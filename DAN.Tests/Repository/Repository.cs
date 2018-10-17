@@ -1,13 +1,11 @@
-﻿using DAN.CollectionQueue;
+﻿using System;
+using DAN.CollectionQueue;
 using DAN.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DAN.Tests.Repository
 {
     /// <summary>
-    /// 
+    /// 仓储
     /// </summary>
     public class Repository<TDocument> : IRepository<TDocument>
     {

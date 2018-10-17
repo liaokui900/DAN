@@ -1,9 +1,6 @@
-﻿using DAN.Models;
-using System;
-using System.Collections;
-using System.Collections.Concurrent;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Text;
+using DAN.Models;
 
 namespace DAN.CollectionQueue
 {
@@ -11,19 +8,23 @@ namespace DAN.CollectionQueue
     /// </summary>
     public class DANQueue<T> : IDANQueue<T>
     {
-        //private static ConcurrentQueue<DANMessage<T>> GloabalQueue => new ConcurrentQueue<DANMessage<T>>();
+        private static BlockingCollection<DANMessage<T>> GlobalCollection;
 
-
-        private static BlockingCollection<DANMessage<T>> GlobalCollection ;
-        static DANQueue() {
+        static DANQueue()
+        {
             GlobalCollection = new BlockingCollection<DANMessage<T>>();
         }
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
         public static bool TryAdd(DANMessage<T> item)
         {
-           return GlobalCollection.TryAdd(item);
+            return GlobalCollection.TryAdd(item);
         }
         /// <summary>
-        /// 
+        /// 获取一个
         /// </summary>
         /// <param name="item"></param>
         public static DANMessage<T> TryTake()
@@ -36,7 +37,7 @@ namespace DAN.CollectionQueue
             return null;
         }
         /// <summary>
-        /// 
+        /// 获取所有
         /// </summary>
         /// <returns></returns>
         public static List<DANMessage<T>> TryTakeAll()
@@ -53,7 +54,7 @@ namespace DAN.CollectionQueue
             }
         }
         /// <summary>
-        /// Count
+        /// 统计
         /// </summary>
         public static int Count()
         {

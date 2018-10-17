@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DAN.Models
 {
-    public class DANMessage<T> 
+    public class DANMessage<T>
     {
         /// <summary>
         /// 时间戳
