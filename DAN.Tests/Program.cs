@@ -9,6 +9,7 @@ using DAN.Tests.Repository;
 using DAN.RabbitMQ;
 using System.IO;
 using System.Diagnostics;
+using DAN.Timer;
 
 namespace DAN.Tests
 {
@@ -17,9 +18,15 @@ namespace DAN.Tests
         static void Main(string[] args)
         {
             PublishTest publishTest = new PublishTest();
-           // publishTest.RunEachPush();
-           // publishTest.RunOncePush();
-           // publishTest.RunDelayTimePush();
+            // publishTest.RunEachPush();
+            // publishTest.RunOncePush();
+            // publishTest.RunDelayTimePush();
+
+            TimerJob.SetAction(() =>
+            {
+                Console.WriteLine("hha" + DateTime.Now);
+            });
+            TimerJob.Start();
             Console.ReadLine();
         }
 
